@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chatapp</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../css/chat.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card chat-app">
+                    <div id="plist" class="people-list">
+                        <div class="input-group">
+                            <div class="action_menu">
+                                <ul>
+
+                                    <li>
+                                        <button class="btn btn-primary" id="createGroup"
+                                            style="margin-bottom: 6px;">CreateGroup</button>
+
+                                    </li>
+
+                                    <li>
+                                        <button class="btn btn-primary" id="addToExistingGroup"
+                                            style="margin-bottom: 6px;">AddMemberToGroup</button>
+
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary" id="deleteGroupMembers"
+                                            style="margin-bottom: 6px;">DeleteMember</button>
+
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary" id="ShowGroupMembers">ShowGroupMembers</button>
+
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                <input type="text" class="form-control" placeholder="Search..." />
+                            </div>
+
+                        </div>
+                        <table>
+                            <thead>
+                                <th>Groups</th>
+                            </thead>
+                            <tbody id="tableGroups">
+
+                            </tbody>
+                        </table>
+                        <ul class="list-unstyled chat-list mt-2 mb-0" id="groups">
+                            <!--<li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar" />
+                                <div class="about">
+                                    <div class="name">Ahmad</div>
+                                    <div class="status">
+                                        <i class="fa fa-circle offline"></i>
+                                    </div>
+                                </div>
+                            </li>-->
+
+                        </ul>
+                    </div>
+
+
+
+                    <div class="chat">
+                        <div class="chat-header clearfix">
+                            <div class="row">
+                                <div class="col-lg-6" id="headingAvtar">
+                                    <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
+                                    </a>
+                                    <div class="chat-about">
+                                        <h6 class="m-b-0">Ahmad</h6>
+
+                                    </div> -->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="chat-history">
+                            <ul class="m-b-0" id="chatBoxMessages">
+
+                                <!-- 
+                                    Adding messages to chat box
+                                    <li class="clearfix">
+                                    <div class="message-data text-right">
+                                        <span style="display: inline; font-size: small;">YOU</span>
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar" />
+                                    </div>
+                                    <div class="message other-message float-right">
+                                        Hi Ahmad
+                                    </div>
+                                </li> -->
+
+
+
+
+                            </ul>
+                        </div>
+                        <div class="chat-message clearfix">
+                            <div class="input-group mb-0">
+
+                                <textarea type="text" class="form-control" id="message"
+                                    placeholder="Enter text here..."></textarea>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-append" id="sendMessageButton">
+                                        <span class="input-group-text send_btn"><i
+                                                class="fas fa-location-arrow"></i>Send</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-active">
+
+                <th>S.no</th>
+                <th>GroupName</th>
+                <th>MemberName</th>
+                <th>MemberEmail</th>
+                <th>IsAdmin</th>
+                <th>MakeMemberAdmin</th>
+
+            </thead>
+            <tbody id="displayAllMembersOfSelectedGroup">
+
+            </tbody>
+            <tfoot>
+                <td colspan="6" style="text-align: center;"> <button class="btn btn-danger" id="logoutbutton"
+                        onclick="logout()">Logout</button>
+                </td>
+            </tfoot>
+        </table>
+
+        <script src="chat.js"></script>
+        <script src="usergroup.js"></script>
+
+        <script src="http://localhost:9000/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io.connect('http://localhost:9000');
+
+
+
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+</body>
+
+</html>
