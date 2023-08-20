@@ -6,6 +6,7 @@ const User = require('./models/userModel')
 const Chats = require('./models/chatModel')
 const UserGroup = require('./models/UserGroup')
 const chatGroup = require('./models/chatGroup')
+const archievedChats = require('./models/ArchivedChats')
 const userSignUpRouter = require('./routers/usersignup')
 const loginRouter = require('./routers/login')
 const chatRouter = require('./routers/chat')
@@ -58,7 +59,8 @@ UserGroup.belongsTo(chatGroup)
 
 
 
-
+const cronJob = require('./jobs/cornjobs');
+cronJob.job.start()
 
 
 
@@ -72,7 +74,7 @@ sequelize.sync({ alter: true }).then((result) => {
 
     const io = new Server(server, {
         cors: {
-            origin: "http://lcoalhost:5500",
+            origin: "*",
             methods: ['GET', 'POST'],
             allowedHeaders: ["my-custom-header"],
             credentials: true,
